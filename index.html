@@ -7,7 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
+	  <link rel="icon" 
+      type="image/png" 
+      href="img/logo.png">
+<!--		<img class="header" src="img/logo.png">-->
 	  <title>Naman Kanwar </title>
 
     <!-- Bootstrap core CSS -->
@@ -62,7 +65,7 @@
       <div class="container my-auto">
         <div class="row">
           <div class="col-lg-10 mx-auto">
-            <h1> <strong><br/><br/><br/>Hello World</strong></h1>
+            <h1> <strong><br/>Hello World</strong></h1>
             <h1><strong>It's Naman! </strong></h1>
             <hr>
           </div>
@@ -78,11 +81,12 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto text-center col-xl-10">
+			  <img src="img/profile.jpg" id="profileIMG">
             <h2 class="section-heading text-white">About Me</h2>
             <hr class="light my-4">
-            <p class="text-faded mb-4" style="font-size: 130%">Hi! My name is Naman Kanwar and I am an Honors student pursuing dual degree (BS + MS) in Computer Science (CSC) with a concentration of Data Science at Georgia State University. I am a recipient of the Campus Atlanta Scholarship, Outstanding Undergraduate Research Award and numerous other Hackathon awards. Currently, I'm serving as Vice Chair for ACM local chapter. My current research interest involves Machine Learning and Artificial Intelligence. Outside class I can found attending hackathons, working in research labs, or tutoring.</p>
+            <p class="text-faded mb-4" style="font-size: 130%">Hi! My name is Naman Kanwar and I am an Honors student pursuing dual degree (BS + MS) in Computer Science (CSC) with a concentration of Data Science at Georgia State University. I am a recipient of the Campus Atlanta Scholarship, Outstanding Undergraduate Research Award and numerous other Hackathon awards. Currently, I'm serving as Chair for ACM local chapter. My current research interest involves Machine Learning and Artificial Intelligence. Outside class I can found attending hackathons, working in research labs, or tutoring.</p>
 			  
-			   <a class="btn btn-light btn-xl sr-button" href="https://drive.google.com/file/d/1FVkFFaXN5kpN5bcLV1yczKXQifdy5snj/view?usp=sharing">Resume</a>
+		<a class="btn btn-light btn-xl sr-button" href="https://drive.google.com/file/d/1FVkFFaXN5kpN5bcLV1yczKXQifdy5snj/view?usp=sharing">Resume</a>
 <!--            <a class="btn btn-light btn-xl js-scroll-trigger" href="#services">Get Started!</a>-->
 <!--
 			  <div style="float: left;">
@@ -302,15 +306,59 @@
     </section>
 
     <section class="p-0" id="portfolio">
+<!--
+		<div class="container">
+			<div class= "row">
+			<div class= "col">
+					<img class="projectIMG" src="img/portfolio/projects/Vizitr.png" alt="">
+			</div>
+		</div>
+		</div>
+-->
+		
 		<div class="col-lg-12 text-center">
             <h2 class="section-heading">Projects</h2>
             <hr class="my-4">
           </div>
-      <div class="container-fluid p-0">
-        <div class="row no-gutters popup-gallery">
-          <div class="col-lg-4 col-sm-6" >
+      
+		<div class="container" style="align-items: center">
+        <div class="row">
+            
+			<div class="col-lg-4 col-sm-6">
+            <a class="portfolio-box" onClick="window.location.href='https://www.youtube.com/watch?v=myDi-J-bn8E&feature=youtu.be'" >
+              <img class="projectIMG" src="img/portfolio/projects/e2ee.png" alt="">
+              <div class="portfolio-box-caption">
+                <div class="portfolio-box-caption-content">
+                  <div class="project-category text-faded">
+                    Click to see details
+                  </div>
+                  <div class="project-name">
+                    <h1>Chemistry Encryption</h1>
+                  </div>
+                </div>
+              </div>
+            </a>
+
+          </div>
+			<div class="col-lg-4 col-sm-6">
+            <a class="portfolio-box" onClick="window.location.href='https://www.youtube.com/watch?v=NGqIH2UJbcA&feature=youtu.be'" >
+              <img class="projectIMG" src="img/portfolio/projects/pharmaPAL.png"  alt="">
+              <div class="portfolio-box-caption">
+                <div class="portfolio-box-caption-content">
+                  <div class="project-category text-faded">
+                    Click to see details
+                  </div>
+                  <div class="project-name">
+                    <h1>PharmaPAL</h1>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+			
+			<div class="col-lg-4 col-sm-6" >
             <a class="portfolio-box" onClick="window.location.href='https://github.com/Naman26/Anthem-Visitor-Alexa-Skill'" >
-               	<img class="img-fluid" style="width: 100%" src="img/portfolio/projects/Vizitr.png" alt="">
+               	<img class="projectIMG" src="img/portfolio/projects/Vizitr.png" alt="">
               
 				<div class="portfolio-box-caption">
 				  
@@ -326,9 +374,11 @@
               </div>
             </a>
           </div>
-          <div class="col-lg-4 col-sm-6">
+			</div>
+			<div class="row">
+			<div class="col-lg-4 col-sm-6">
             <a class="portfolio-box" onClick="window.location.href='https://github.com/Naman26/iOS-Blind_Care'" >
-              <img class="img-fluid" src="img/portfolio/projects/Blind Care.png" style="width: 100%" alt="">
+              <img class="projectIMG" src="img/portfolio/projects/Blind Care.png"  alt="">
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
                   <div class="project-category text-faded">
@@ -341,9 +391,10 @@
               </div>
             </a>
           </div>
-          <div class="col-lg-4 col-sm-6">
+          
+			<div class="col-lg-4 col-sm-6">
             <a class="portfolio-box" onClick="window.location.href='https://devpost.com/software/stock-bot'" >
-              <img class="img-fluid" src="img/portfolio/projects/Stock Bot.png" style="width: 100%" alt="">
+              <img class="projectIMG" src="img/portfolio/projects/Stock Bot.png" alt="">
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
                   <div class="project-category text-faded">
@@ -356,9 +407,11 @@
               </div>
             </a>
           </div>
+		
+			
           <div class="col-lg-4 col-sm-6">
             <a class="portfolio-box" onClick="window.location.href='https://github.com/Naman26/AnthemConnection'" >
-              <img class="img-fluid" src="img/portfolio/projects/Anthem Connection.png" style="width: 100%" alt="">
+              <img class="projectIMG" src="img/portfolio/projects/Anthem Connection.png" alt="">
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
                   <div class="project-category text-faded">
@@ -371,10 +424,13 @@
               </div>
             </a>
           </div>
+		</div>
+		
+		<div class= "row">
           <div class="col-lg-4 col-sm-6">
 			 
             <a class="portfolio-box" onClick="window.location.href='https://devpost.com/software/collegetalent'" >
-              <img class="img-fluid" src="img/portfolio/projects/College Talent.png" style="width: 100%" alt="">
+              <img class="projectIMG" src="img/portfolio/projects/College Talent.png" alt="">
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
                   <div class="project-category text-faded">
@@ -387,30 +443,11 @@
               </div>
             </a>
           </div>
-          <div class="col-lg-4 col-sm-6">
-            <a class="portfolio-box" onClick="window.location.href='https://github.com/Naman26/Game-Anthropocene'" >
-              <img class="img-fluid" src="img/portfolio/projects/Anthropocene.png" style="width: 100%" alt="">
-              <div class="portfolio-box-caption">
-                <div class="portfolio-box-caption-content">
-                  <div class="project-category text-faded">
-                    Click to see details
-                  </div>
-                  <div class="project-name">
-                    <h1>Game-Anthropocene</h1>
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-		
-		 <div class="container-fluid p-0">
-        <div class="row no-gutters popup-gallery">
-          
+         
+        
           <div class="col-lg-4 col-sm-6">
             <a class="portfolio-box" onClick="window.location.href='https://github.com/Naman26/Picture-worth-1000-words'" >
-              <img class="img-fluid" src="img/portfolio/projects/pictur.png" style="width: 100%" alt="">
+              <img class="projectIMG" src="img/portfolio/projects/pictur.png"  alt="">
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
                   <div class="project-category text-faded">
@@ -423,24 +460,27 @@
               </div>
             </a>
           </div>
-          <div class="col-lg-4 col-sm-6">
-            <a class="portfolio-box" onClick="window.location.href='https://www.youtube.com/watch?v=NGqIH2UJbcA&feature=youtu.be'" >
-              <img class="img-fluid" src="img/portfolio/projects/pharmaPAL.png" style="width: 100%" alt="">
+          
+			 <div class="col-lg-4 col-sm-6">
+            <a class="portfolio-box" onClick="window.location.href='https://github.com/Naman26/Game-Anthropocene'" >
+              <img class="projectIMG" src="img/portfolio/projects/Anthropocene.png" alt="">
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
                   <div class="project-category text-faded">
                     Click to see details
                   </div>
                   <div class="project-name">
-                    <h1>PharmaPAL</h1>
+                    <h2>Game-Anthropocene</h2>
                   </div>
                 </div>
               </div>
             </a>
           </div>
+			</div>
+			<div class="row">
           <div class="col-lg-4 col-sm-6">
             <a class="portfolio-box" onClick="window.location.href='https://github.com/Naman26/Picture-worth-1000-words'" >
-              <img class="img-fluid" src="img/portfolio/projects/audiobook.png" style="width: 100%" alt="">
+              <img class="projectIMG" src="img/portfolio/projects/audiobook.png" alt="">
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
                   <div class="project-category text-faded">
@@ -454,7 +494,8 @@
             </a>
 
           </div>
-        </div>
+		</div>
+        
       </div>
     </section>
 
@@ -465,11 +506,13 @@
 			  <strong><u>Evolution of Bacteria Using Machine Learning</u></strong><br/> 
 				Collaborating with bioinformatics professionals at Emory University to develop an algorithm that would reduce the complexity of creating Phylogenetic Network in hopes of helping biologists develop antibiotic vaccines quickly
 		  </p>
-        <a class="btn btn-light btn-xl sr-button" href="https://github.com/Naman26/PhylogeneticNetworks">Click here to learn more</a>
+        <a class="btn btn-light btn-xl sr-button" href="https://www.youtube.com/watch?v=MrbloFPQxMc&feature=youtu.be">Click here to learn more</a>
       </div>
-    </section>
-	  <section id= "Work">
-	  	<div class="row">
+	  </section>
+	  
+	  
+	  <section>
+	  	<div class="row" >
           <div class="col-lg-8 mx-auto text-center">
             <h2 class="section-heading">Work</h2>
 	  		<hr class="my-4">
@@ -477,9 +520,9 @@
         <div class="row">
           <div class="col-lg-3 col-md-6 text-center">
             <div class="service-box mt-5 mx-auto">
-				<img src="img/portfolio/work/gsu.png" height="45%" width="100%"> 
+				<img src="img/portfolio/work/acm.png" height="45%" width="100%"> 
 <!--              <i class="fas fa-4x fa-gem text-primary mb-3 sr-icon-1"></i>-->
-              <h4 class="mb-3">Teaching Assistant <strong>Discrete Mathematics</strong></h4>
+              <h4 class="mb-3">Chair<br><strong> ACM Chapter at GSU</strong><em><br>November 2018- Present</em></h4>
             </div>
           </div>
 			
@@ -487,27 +530,47 @@
             <div class="service-box mt-5 mx-auto">
 				<img src="img/portfolio/work/gsu.png" height="45%" width="100%"> 
 <!--              <i class="fas fa-4x fa-gem text-primary mb-3 sr-icon-1"></i>-->
-              <h4 class="mb-3">Research Assistant <strong>Computer Science Department</strong></h4>
+              <h4 class="mb-3">Teaching Assistant <strong>Discrete Mathematics</strong><em><br>August 2018- Present</em></h4>
+            </div>
+          </div>
+			
+			<div class="col-lg-3 col-md-6 text-center">
+            <div class="service-box mt-5 mx-auto">
+				<img src="img/portfolio/work/gsu.png" height="45%" width="100%"> 
+<!--              <i class="fas fa-4x fa-gem text-primary mb-3 sr-icon-1"></i>-->
+              <h4 class="mb-3">Research Assistant <strong>Computer Science Department</strong><em><br>August 2017- Present</em></h4>
             </div>
           </div>
 						
-			<div class="col-lg-3 col-md-6 text-center">
+			<div class="col-lg-3 col-md-6 text-center" id= "Work">
             <div class="service-box mt-5 mx-auto">
 				<img src="img/portfolio/work/gsu.png" height="45%" width="100%"> 
 <!--              <i class="fas fa-4x fa-gem text-primary mb-3 sr-icon-1"></i>-->
-              <h4 class="mb-3">Resident Assistant <strong>University Housing</strong></h4>
+              <h4 class="mb-3">Resident Assistant <strong>University Housing</strong> <em><br>August 2017- Present</em></h4>
             </div>
           </div>
-			
-			<div class="col-lg-3 col-md-6 text-center">
+		
+			</div>
+				
+				
+			<div class="row" >
+				
+				<div class="col-lg-3 col-md-6 text-center">
+            <div class="service-box mt-5 mx-auto">
+				<img src="img/portfolio/work/gsu.png" height="45%" width="100%"> 
+<!--              <i class="fas fa-4x fa-gem text-primary mb-3 sr-icon-1"></i>-->
+              <h4 class="mb-3">Mathamatics Tutor <strong>Math Assistance Complex GSU</strong><em><br>August 2017- May 2018</em></h4>
+            </div>
+          </div>
+				
+				<div class="col-lg-3 col-md-6 text-center">
             <div class="service-box mt-5 mx-auto">
 				<img src="img/portfolio/work/verizon.png" height="45%" width="100%"> 
 <!--              <i class="fas fa-4x fa-gem text-primary mb-3 sr-icon-1"></i>-->
-              <h4 class="mb-3">Data Science Intern</h4>
+              <h4 class="mb-3">Data Science Intern<strong> Verizon Connect</strong> <em>June 2017- August 2017</em></h4>
             </div>
           </div>
-			
-			</div>
+				</div>
 		  </div>
 			  </div>
 			
@@ -517,8 +580,9 @@
 	  
 	  
 	  
-    <section id="contact">
-      <div class="bg-dark text-white">	
+    <div class="bg-dark text-white">
+	  <section id="contact">
+      	
         <div class="row">
           <div class="col-lg-8 mx-auto text-center">
             <h2 class="section-heading">Let's Get In Touch!</h2>
@@ -543,9 +607,9 @@
 				<a href="https://github.com/Naman26"> <p>GitHub</p> </a>
 			</div>
         </div>
-      </div>
+     
     </section>
-
+	  </div>
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
