@@ -33,7 +33,7 @@ a {
 }
 
 a:hover {
-  color: #f05f40;
+  color: #54a0ff;
 }
 
 h1,
@@ -126,7 +126,7 @@ gitHub{
 }
 
 #mainNav .navbar-brand:focus, #mainNav .navbar-brand:hover {
-  color: #f05f40;
+  color: #54a0ff;
 }
 
 #mainNav .navbar-nav > li.nav-item > a.nav-link,
@@ -183,7 +183,7 @@ gitHub{
     color: #F05F40;
   }
   #mainNav.navbar-shrink .navbar-brand:focus, #mainNav.navbar-shrink .navbar-brand:hover {
-    color: #f05f40;
+    color: #54a0ff;
   }
   #mainNav.navbar-shrink .navbar-nav > li.nav-item > a.nav-link,
   #mainNav.navbar-shrink .navbar-nav > li.nav-item > a.nav-link:focus {
@@ -332,7 +332,7 @@ header.masthead p {
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
   color: #fff;
-  background-color: #ee4b28 !important;
+  background-color: #2e86de !important;
 }
 
 .btn-primary:active, .btn-primary:focus {
