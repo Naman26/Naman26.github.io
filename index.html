@@ -1,533 +1,313 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:marginLeft="http://www.w3.org/1999/xhtml">
-
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Portfolio</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; font-family:'Source Code Pro', monospace; }
+  body { background:#0f172a; color:#e0e7ff; scroll-behavior:smooth; }
+  a { text-decoration:none; color:inherit; }
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta http-equiv='cache-control' content='no-cache'> 
-    <meta http-equiv='expires' content='0'> 
-    <meta http-equiv='pragma' content='no-cache'>
-    <meta property="og:title" content="Naman Kanwar"/>
-    <meta property="og:type" content="image/png"/>
-    <meta property="og:url" content="http://www.naman26.github.io/"/>
-    <meta property="og:image" content="img/logo.png"/>
-    <link rel="icon"
-          type="image/png"
-          href="img/logo.png">
-    <title>Naman Kanwar </title>
- 
-    <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  :root {
+    --primary:#3b82f6;   /* Data blue */
+    --secondary:#6366f1; /* Tech accent */
+    --bg-card:#1e293b;
+    --text-light:#e0e7ff;
+    --muted:#475569;
+    --accent:#22d3ee;   /* Highlight nodes or lines */
+  }
 
-    <!-- Custom fonts for this template -->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
-          rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
-          rel='stylesheet' type='text/css'>
+  .container { width:90%; max-width:1200px; margin:0 auto; }
 
-    <!-- Plugin CSS -->
-    <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+  /* Hero */
+  #hero {
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    position:relative;
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+  }
+  #hero h1 { font-size:clamp(2.5rem,6vw,4rem); color:var(--primary); margin-bottom:1rem; letter-spacing:2px; }
+  #hero p { font-size:clamp(1rem,2.5vw,1.5rem); margin-bottom:2rem; color:var(--text-light); }
+  .btn { padding:0.75rem 1.5rem; margin:0 0.5rem; background:var(--primary); color:#fff; border-radius:8px; transition:0.3s; font-weight:600; }
+  .btn:hover { background:var(--secondary); }
 
-    <!-- Custom styles for this template -->
-    <link href="css/creative.min.css" rel="stylesheet">
+  /* Section titles */
+  .section { padding:80px 0; position:relative; }
+  .section-title { font-size:clamp(2rem,5vw,2.5rem); text-align:center; margin-bottom:3rem; color:var(--accent); }
 
+  /* Cards */
+  .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:2rem; }
+
+  .experience-card, .project-card, .research-card {
+    background:var(--bg-card);
+    border-radius:16px;
+    padding:2rem;
+    box-shadow:0 10px 25px rgba(0,0,0,0.5);
+    position:relative;
+    overflow:hidden;
+    transition: transform 0.5s;
+  }
+  .experience-card:hover, .project-card:hover, .research-card:hover { transform: translateY(-5px) scale(1.02); }
+
+  /* Experience */
+  .experience-logo { position:absolute; top:10px; right:10px; width:60px; opacity:0.15; }
+  .experience-card h3 { margin-bottom:0.5rem; color:var(--primary); }
+  .experience-card p { font-size:0.95rem; line-height:1.5; color:var(--text-light); }
+
+  /* Projects */
+  #projects .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:2rem; }
+  .project-card img { width:100%; height:200px; object-fit:cover; border-radius:8px; margin-bottom:1rem; }
+  .project-content h3 { color:var(--primary); margin-bottom:0.5rem; }
+  .project-content p { color:var(--text-light); }
+
+  /* Research carousel */
+  #research .carousel { display:flex; overflow-x:auto; gap:1.5rem; scroll-behavior:smooth; padding-bottom:1rem; }
+  .research-card img { height:180px; object-fit:cover; border-radius:8px; margin-bottom:0.5rem; }
+
+  /* Skills */
+  #skills { background:#111827; text-align:center; }
+  .skill-badge {
+    display:inline-block;
+    margin:0.3rem;
+    padding:0.6rem 1.2rem;
+    background:var(--secondary);
+    color:#fff;
+    border-radius:50px;
+    font-size:0.95rem;
+    letter-spacing:1px;
+    transition:0.3s;
+  }
+  .skill-badge:hover { background:var(--primary); }
+
+  /* Contact */
+  #contact { background:#1e293b; color:var(--text-light); text-align:center; padding:100px 0; }
+  #contact a { color:var(--accent); margin:0 1rem; font-size:1.5rem; transition:0.3s; }
+  #contact a:hover { color:var(--primary); }
+
+  /* Lines & Data Nodes Decoration */
+  .data-line {
+    position:absolute;
+    width:2px;
+    height:100%;
+    background:var(--muted);
+    top:0; left:50%;
+    transform:translateX(-50%);
+    z-index:-1;
+    opacity:0.2;
+  }
+  .data-node {
+    width:12px;
+    height:12px;
+    background:var(--accent);
+    border-radius:50%;
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+  }
+
+  /* --- Experience Section Styling --- */
+  #experience {
+    padding: 60px 20px;
+  }
+
+  .experience-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .experience-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 25px;
+    position: relative;
+    color: #fff;
+    backdrop-filter: blur(8px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .experience-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.3);
+  }
+
+  .experience-card .logo {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    height: 40px;
+    opacity: 0.25;
+  }
+
+  /* Responsive image grid */
+  .experience-images {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .experience-images img {
+    flex: 0 1 70px;
+    height: 55px;
+    object-fit: contain;
+    aspect-ratio: 1/1;
+    opacity: 0.85;
+    border-radius: 6px;
+    background: rgba(255,255,255,0.03); /* Subtle blend */
+    padding: 5px;
+    transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    box-shadow: 0 0 0 rgba(255,255,255,0); /* Prevent border artifact */
+  }
+
+  .experience-images img:hover {
+    transform: scale(1.05);
+    opacity: 1;
+    box-shadow: 0 0 10px rgba(255,255,255,0.1);
+  }
+
+  /* Tooltip - Glassmorphism style */
+  .experience-images img::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 110%;
+    left: 50%;
+    transform: translateX(-50%) translateY(5px);
+    background: rgba(40, 40, 50, 0.6); /* Blended dark translucent */
+    backdrop-filter: blur(6px);
+    color: #f1f1f1;
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.25s ease;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .experience-images img:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  @media(max-width: 768px) {
+    .experience-images img {
+      flex: 0 1 50px;
+      height: 45px;
+    }
+  }
+</style>
 </head>
+<body>
 
-<body id="page-top" >
-
-<!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-    <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">Naman Kanwar</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-                data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
-                aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#about">About</a>
-                </li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services">Skills & Certs</a></li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#Work">Experience</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#portfolio">Projects</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#Research">Research</a>
-                </li>
-
-               
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
-<header class="masthead text-center text-white d-flex">
-    <div class="container my-auto">
-        <div class="row">
-            <div class="col-lg-10 mx-auto" >
-
-                <h1><strong><br/>Hello World</strong></h1>
-                <h1><strong>It's Naman! </strong></h1>
-                <hr>
-
-            </div>
-            <div class="col-lg-8 mx-auto">
-
-                <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Find Out More</a>
-            </div>
-        </div>
-    </div>
-</header>
-
-<section class="bg-primary" id="about">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 mx-auto text-center col-xl-10">
-                <h2 class="section-heading text-white">About Me</h2>
-                <hr class="light my-4">
-
-                <p class="text-faded mb-4" style="font-size: 130%">Software Developer| Data Engineer</p>
-
-
-                <a class="btn btn-light btn-xl sr-button" href="https://naman26.github.io/Resume.pdf" target="_blank">Resume</a>
-            </div>
-        </div>
-    </div>
+<section id="hero">
+  <h1>Naman Kanwar</h1>
+  <p>Data Engineer | Pipeline Architect | Analytics Enthusiast</p>
+  <div>
+    <a href="#experience" class="btn">Experience</a>
+    <a href="#projects" class="btn">Projects</a>
+  </div>
 </section>
 
-<section id="services">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h2 class="section-heading">Skills</h2>
-                <hr class="my-4">
-            </div>
-        </div>
+<section id="experience" class="section container">
+  <h2 class="section-title">Experience</h2>
+  <div class="cards">
+    <div class="experience-card">
+      <img src="https://via.placeholder.com/60?text=C1" class="experience-logo" alt="Company 1">
+      <h3>Data Engineer</h3>
+      <p>Fanduel | Nov 2024 - Present</p>
+      <!-- <p>Built robust ETL pipelines, optimized data storage, and improved query performance across large datasets.</p> -->
+       <div class="experience-images">
+         <img src="https://www.vectorlogo.zone/logos/apache_spark/apache_spark-icon.svg" alt="Apache Spark">
+        <img src="https://www.vectorlogo.zone/logos/amazon_aws/amazon_aws-icon.svg" alt="AWS"style="filter: invert(1);">
+        <img src="https://www.vectorlogo.zone/logos/apache_kafka/apache_kafka-icon.svg" alt="Kafka" style="filter: invert(1);">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/apacheairflow.svg" alt="Airflow">
+      </div>
     </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3 col-md-6 text-center">
-                <div class="service-box mt-5 mx-auto">
-                    <h3 class="mb-3" style="text-decoration:underline">Languages</h3>
-                    <h3 class="mb-3" style="font-size: 130%">Python (Proficient)</h3>
-                    <h3 class="mb-3" style="font-size: 130%">Java </h3>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 text-center">
-                <div class="service-box mt-5 mx-auto">
-                    <h3 class="mb-3" style="text-decoration:underline">Data and Cloud</h3>
-                    <h3 class="mb-3" style="font-size: 130%">MariaDB</h3>
-                    <h3 class="mb-3" style="font-size: 130%">SQL</h3>
-                    <h3 class="mb-3" style="font-size: 130%">Google Cloud Platform</h3>
-                    <h3 class="mb-3" style="font-size: 130%">Azure Databricks</h3>
-                    <h3 class="mb-3" style="font-size: 130%">Airflow</h3>
-                    <h3 class="mb-3" style="font-size: 130%">Pyspark</h3>
-                    <h3 class="mb-3" style="font-size: 130%"> AWS Lambda</h3>
-                    <h3 class="mb-3" style="font-size: 130%">Amazon QuickSight/ Sagemaker/ S3</h3>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 text-center">
-                <div class="service-box mt-5 mx-auto">
-                    <h3 class="mb-3" style="text-decoration:underline">Concepts</h3>
-                    <h3 class="mb-3" style="font-size: 130%">Object-oriented programming</h3>
-                    <h3 class="mb-3" style="font-size: 130%">Agile/Scrum</h3>
-                    <h3 class="mb-3" style="font-size: 130%">Multithreading</h3>
-                    <h3 class="mb-3" style="font-size: 130%">ETL</h3>
-                    <h3 class="mb-3" style="font-size: 130%">Data Analysis</h3>
-                    <h3 class="mb-3" style="font-size: 130%">Data Mining</h3>
-                    <h3 class="mb-3" style="font-size: 130%">Big Data</h3>
-
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 text-center">
-                <div class="service-box mt-5 mx-auto">
-                    <h3 class="mb-3" style="text-decoration:underline">Others</h3>
-                    <h3 class="mb-3" style="font-size: 130%">Spring Boot</h3>
-                    <h3 class="mb-3" style="font-size: 130%">Linux</h3>
-                    <h3 class="mb-3" style="font-size: 130%">Jenkins</h3>
-                    <h3 class="mb-3" style="font-size: 130%">Docker</h3>
-                    <h3 class="mb-3" style="font-size: 130%">JFROG</h3>
-                    <h3 class="mb-3" style="font-size: 130%">Git</h3>
-                    <h3 class="mb-3" style="font-size: 130%">Flask</h3>
-                    <h3 class="mb-3" style="font-size: 130%">Selenium</h3>
-                </div>
-            </div>
-        </div>
+    <div class="experience-card">
+      <img src="https://via.placeholder.com/60?text=C2" class="experience-logo" alt="Company 2">
+      <h3>Data Engineer</h3>
+      <p>Company 2 | Jun 2018 - Dec 2019</p>
+      <div class="experience-images">
+        <img src="https://www.vectorlogo.zone/logos/apache_spark/apache_spark-icon.svg" data-tooltip="Apache Spark" alt="Apache Spark" style="filter: invert(1);">
+        <img src="https://www.vectorlogo.zone/logos/amazon_aws/amazon_aws-ar21.svg" data-tooltip="AWS" alt="AWS" style="filter: invert(1);">
+        <img src="c:\Users\Jimmy\Documents\Github\Naman26.github.io\img\phylo.png" data-tooltip="Apache Kafka" alt="Kafka" style="filter: invert(1);">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/apacheairflow.svg" data-tooltip="Apache Airflow" alt="Airflow" style="filter: invert(1);">
+      </div>
     </div>
-    <div class="container" style="padding-top: 2%;">
-        <div class="col-lg-12 text-center"></div>
-        <div class="row">
-            
-                
-                <div class="container text-center">
-                    <h2 class="section-heading">Certifications</h2>
-                    <hr>
-                    <a href="https://coursera.org/share/fd170135c42c76a2015a0d961a6edbdf" target="_blank" style="color: #54a0ff ;"><h4>AWS Fundamentals Specialization</h4></a>
-                    <a href="https://hackerrank.com/certificates/540a2bdaaf11" target="_blank" style="color: #54a0ff ;"><h4>Python</h4></a>
-                    <a href="https://hackerrank.com/certificates/4f83321244ab" target="_blank" style="color: #54a0ff ;"><h4>Java</h4></a>
-                </div>
-            </div>
-        </div>
-    </div>
-    
+  </div>
 </section>
 
-<section class="bg-primary" id="about">
-    <div class="row">
-        <div class="col-lg-8 mx-auto text-center col-xl-10">
-            <h2 class="section-heading text-white">Experience</h2>
-            <hr class="light my-4">
-            <div class="container" id="Work">
-                <div class="row">
-                    <div class="col-lg-3 col-md-6 text-center">
-                        <div class="service-box mt-5 mx-auto">
-                            <img src="img/portfolio/work/walmart.png" height="45%" width="100%" style="border-radius: 5%;">
-                            <h4 class="text-white mb-3">Data Engineer III <br><a href="https://tech.walmart.com/" target="_blank" ><strong><u>Walmart Global Tech </u></strong></a><em><br>Aug 22 - Present</em>
-                            </h4>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 text-center">
-                        <div class="service-box mt-5 mx-auto">
-                            <img src="img/portfolio/work/ln.jpg" height="45%" width="100%" style="border-radius: 5%;">
-                            <h4 class="text-white mb-3"> Software Developer II <br><a href="https://risk.lexisnexis.com/" target="_blank" ><strong><u>LexisNexis Risk Solutions</u></strong></a><em><br>Feb 21 -
-                                Aug 22</em></h4>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 text-center">
-                        <div class="service-box mt-5 mx-auto">
-                            <img src="img/portfolio/work/gsu.png" height="45%" width="100%" style="border-radius: 5%;">
-                            <h4 class="text-white mb-3"> Data Engineer <br><a href="https://ebcs.gsu.edu/" target="_blank" ><strong><u>Evidenace-Based Cybersecurity</u></strong></a><em><br>Aug 19 -
-                                Aug 20</em></h4>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 text-center">
-                        <div class="service-box mt-5 mx-auto">
-                            <img src="img/portfolio/work/fiserv.png" height="45%" width="100%" style="border-radius: 5%;">
-                            <h4 class="text-white mb-3">Software Developer<br> <a href="https://www.fiserv.com/" target="_blank" ><strong><u>Fiserv</u></strong></a><em><br>Jun 19 - Aug 19</em>
-                            </h4>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="row">
-                    <div class="col-lg-3 col-md-6 text-center">
-                        <div class="service-box mt-5 mx-auto">
-                            <img src="img/portfolio/work/gsu.png" height="45%" width="100%" style="border-radius: 5%;">
-                            <h4 class="text-white mb-3">Data Engineer<br><a href="https://www.cs.gsu.edu//" target="_blank" ><strong><u>Computer Science Department</u></strong></a><em><br>Oct 17 - Aug 19</em>
-                            </h4>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 text-center">
-                        <div class="service-box mt-5 mx-auto">
-                            <img src="img/portfolio/work/verizon.png" height="45%" width="100%" style="border-radius: 5%;">
-                            <h4 class="text-white mb-3">Data Analyst<br><a href="https://www.verizonconnect.com/" target="_blank" ><strong><u>Verizon Connect</u><br></strong></a><em>Jun 17 - Aug 17</em></h4>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 text-center">
-                        <div class="service-box mt-5 mx-auto">
-                            <img src="img/portfolio/work/acm.png" height="45%" width="100%" style="border-radius: 5%;"/><br>
-                            <h4 class="text-white mb-3">Chair<br><a href="http://acm.cs.gsu.edu/dw/doku.php" target="_blank" ><strong><u>ACM Chapter of GSU</u></strong></a><em><br>Nov 18 - Jul 20</em></h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
+<section id="projects" class="section container">
+  <h2 class="section-title">Projects</h2>
+  <div class="grid">
+    <div class="project-card">
+      <img src="https://via.placeholder.com/400x200?text=Data+Pipeline" alt="Project 1">
+      <div class="project-content">
+        <h3>Real-Time Data Pipeline</h3>
+        <p>Implemented streaming pipelines using Kafka & Spark to handle millions of events per day.</p>
+      </div>
     </div>
-
-
+    <div class="project-card">
+      <img src="https://via.placeholder.com/400x200?text=Analytics+Dashboard" alt="Project 2">
+      <div class="project-content">
+        <h3>Analytics Dashboard</h3>
+        <p>Developed a data visualization platform providing insights into user behavior and performance metrics.</p>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section class="p-0" id="portfolio">
-    <div class="col-lg-12 text-center">
-        <h2 class="section-heading" style="padding-top: 2%;">Projects</h2>
-        <hr class="my-4">
+<section id="research" class="section container">
+  <h2 class="section-title">Research & Innovation</h2>
+  <div class="carousel">
+    <div class="research-card">
+      <img src="https://via.placeholder.com/320x180?text=ML+Research" alt="Research 1">
+      <div class="content">
+        <h3>ML Model Optimization</h3>
+        <p>Research on scalable machine learning pipelines for big data environments.</p>
+      </div>
     </div>
-
-    <div class="container" style="align-items: center">
-        <div class="row">
-
-            <div class="col-lg-4 col-sm-6">
-                <a class="portfolio-box"
-                   onClick="window.location.href='https://www.youtube.com/watch?v=myDi-J-bn8E&feature=youtu.be'">
-                    <img class="projectIMG" src="img/portfolio/projects/e2ee.png" alt="">
-                    <div class="portfolio-box-caption">
-                        <div class="portfolio-box-caption-content">
-                            <div class="project-category text-faded">
-                                Click to see details
-                            </div>
-                            <div class="project-name">
-                                <h1>Chemistry Encryption</h1>
-                            </div>
-                        </div>
-                    </div>
-                
-                </a>
-
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <a class="portfolio-box"
-                   onClick="window.location.href='https://www.youtube.com/watch?v=NGqIH2UJbcA&feature=youtu.be'">
-                    <img class="projectIMG" src="img/portfolio/projects/pharmaPAL.png" alt="">
-                    <div class="portfolio-box-caption">
-                        <div class="portfolio-box-caption-content">
-                            <div class="project-category text-faded">
-                                Click to see details
-                            </div>
-                            <div class="project-name">
-                                <h1>PharmaPAL</h1>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-lg-4 col-sm-6">
-                <a class="portfolio-box"
-                   onClick="window.location.href='https://github.com/Naman26/Anthem-Visitor-Alexa-Skill'">
-                    <img class="projectIMG" src="img/portfolio/projects/Vizitr.png" alt="">
-
-                    <div class="portfolio-box-caption">
-
-                        <div class="portfolio-box-caption-content">
-                            <div class="project-category text-faded">
-                                Click to see details
-                            </div>
-
-                            <div class="project-name">
-                                <h1>Vizitr</h1>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-4 col-sm-6">
-                <a class="portfolio-box" onClick="window.location.href='https://github.com/Naman26/iOS-Blind_Care'">
-                    <img class="projectIMG" src="img/portfolio/projects/Blind Care.png" alt="">
-                    <div class="portfolio-box-caption">
-                        <div class="portfolio-box-caption-content">
-                            <div class="project-category text-faded">
-                                Click to see details
-                            </div>
-                            <div class="project-name">
-                                <h1>BlindCare</h1>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-lg-4 col-sm-6">
-                <a class="portfolio-box" onClick="window.location.href='https://devpost.com/software/stock-bot'">
-                    <img class="projectIMG" src="img/portfolio/projects/Stock Bot.png" alt="">
-                    <div class="portfolio-box-caption">
-                        <div class="portfolio-box-caption-content">
-                            <div class="project-category text-faded">
-                                Click to see details
-                            </div>
-                            <div class="project-name">
-                                <h1>Stock Bot</h1>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-
-            <div class="col-lg-4 col-sm-6">
-                <a class="portfolio-box" onHover ="cursor: pointer"
-                   onClick="window.location.href='https://drive.google.com/file/d/1wCAxDLb72KgkcyxWXb9x0Iy3fYSRKf85/view?usp=sharing'">
-                    <img class="projectIMG" src="img/portfolio/projects/ql.png" alt="">
-                    <div class="portfolio-box-caption">
-                        <div class="portfolio-box-caption-content">
-                            <div class="project-category text-faded">
-                                Click to see details
-                            </div>
-                            <div class="project-name">
-                                <h1>Deep Q Learning</h1>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-lg-4 col-sm-6">
-
-                <a class="portfolio-box" onClick="window.location.href='https://devpost.com/software/collegetalent'">
-                    <img class="projectIMG" src="img/portfolio/projects/College Talent.png" alt="">
-                    <div class="portfolio-box-caption">
-                        <div class="portfolio-box-caption-content">
-                            <div class="project-category text-faded">
-                                Click to see details
-                            </div>
-                            <div class="project-name">
-                                <h1>College Talent</h1>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-
-            <div class="col-lg-4 col-sm-6">
-                <a class="portfolio-box"
-                   onClick="window.location.href='https://github.com/Naman26/Picture-worth-1000-words'">
-                    <img class="projectIMG" src="img/portfolio/projects/pictur.png" alt="">
-                    <div class="portfolio-box-caption">
-                        <div class="portfolio-box-caption-content">
-                            <div class="project-category text-faded">
-                                Click to see details
-                            </div>
-                            <div class="project-name">
-                                <h1>Picture worth a 1000 words</h1>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-lg-4 col-sm-6">
-                <a class="portfolio-box" onClick="window.location.href='https://github.com/Naman26/Game-Anthropocene'">
-                    <img class="projectIMG" src="img/portfolio/projects/Anthropocene.png" alt="">
-                    <div class="portfolio-box-caption">
-                        <div class="portfolio-box-caption-content">
-                            <div class="project-category text-faded">
-                                Click to see details
-                            </div>
-                            <div class="project-name">
-                                <h2>Game-Anthropocene</h2>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-4 col-sm-6">
-                <a class="portfolio-box"
-                   onClick="window.location.href='https://github.com/Naman26/Picture-worth-1000-words'">
-                    <img class="projectIMG" src="img/portfolio/projects/audiobook.png" alt="">
-                    <div class="portfolio-box-caption">
-                        <div class="portfolio-box-caption-content">
-                            <div class="project-category text-faded">
-                                Click to see details
-                            </div>
-                            <div class="project-name">
-                                <h1>Create your own Audiobook</h1>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-            </div>
-
-            <div class="col-lg-4 col-sm-6">
-                <a class="portfolio-box" onClick="window.location.href='https://github.com/Naman26/AnthemConnection'">
-                    <img class="projectIMG" src="img/portfolio/projects/Anthem Connection.png" alt="">
-                    <div class="portfolio-box-caption">
-                        <div class="portfolio-box-caption-content">
-                            <div class="project-category text-faded">
-                                Click to see details
-                            </div>
-                            <div class="project-name">
-                                <h1>Anthem Connection</h1>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-
-        </div>
-
+    <div class="research-card">
+      <img src="https://via.placeholder.com/320x180?text=Data+Visualization" alt="Research 2">
+      <div class="content">
+        <h3>Data Visualization Techniques</h3>
+        <p>Innovative methods for real-time data visualization for enterprise analytics platforms.</p>
+      </div>
     </div>
+  </div>
 </section>
 
-<section class="bg-primary" id= "Research">
-    <div class="mx-auto text-center col-xl-1">
-        <h2 class="section-heading text-white">Research</h2>
-        <hr class="light my-4">
-    </div>
-    <div class="container" style="align-items: center">
-        <div class="row" >
-            <div class="col-lg-6 col-md-8">
-                <div class="service-box mt-5 mx-auto">
-                    <img src="img/CyberSecurity.png" height="45%" width="58%" class="rounded">
-                    <h4 class="text-white mb-3"> Cyber Security<br><a href="https://ebcs.gsu.edu/project/hacking-careers/" target="_blank" ><strong>Learn More</strong></a></h4>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-8 text-center">
-                <div class="service-box mt-5 mx-auto">
-                    <img src="img/phylo.png" height="0%" width="50%" class="rounded">
-                    <h4 class="text-white mb-3"> Phylogenetics <br><a href="https://www.youtube.com/watch?v=MrbloFPQxMc&feature=youtu.be" target="_blank" ><strong>Learn More</strong></a></h4>
-                </div>
-            </div>
-        </div>
-    </div>
-<hr>
+<section id="skills" class="section container">
+  <h2 class="section-title">Skills & Certifications</h2>
+  <div>
+    <span class="skill-badge">Python</span>
+    <span class="skill-badge">SQL</span>
+    <span class="skill-badge">Spark</span>
+    <span class="skill-badge">Kafka</span>
+    <span class="skill-badge">AWS</span>
+    <span class="skill-badge">Airflow</span>
+  </div>
 </section>
 
-
-
-
-<div class="bg-dark text-white">
-    <section id="contact">
-
-        <div class="row">
-            <div class="col-lg-8 mx-auto text-center">
-                <h2 class="section-heading">Let's Get In Touch!</h2>
-        </div>
-        </div>
-
-        <div class="row">
-            <div class="col-lg-4 ml-auto text-center">
-                <img src="img/in.png" height="50%" width="8%" style="padding-bottom: 2%">
-                <a href="https://www.linkedin.com/in/namankanwar/"><p>linkedIn</p></a>
-            </div>
-            <div class="col-lg-4 mr-auto text-center">
-                <i class="fas fa-envelope fa-3x mb-3 sr-contact-2"></i>
-                <p>
-                    <a href="mailto:nmnknwr@gmail.com" target="_blank">nmnknwr@gmail.com</a>
-                </p>
-            </div>
-            <div class="col-lg-4 ml-auto text-center">
-                <img src="img/git.png" height="50%" width="8%" style="padding-bottom: 2%">
-                <a href="https://github.com/Naman26" target="_blank"><p>GitHub</p></a>
-            </div>
-        </div>
-
-    </section>
-</div>
-<!-- Bootstrap core JavaScript -->
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-<!-- Plugin JavaScript -->
-<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-<script src="vendor/scrollreveal/scrollreveal.min.js"></script>
-<script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
-
-<!-- Custom scripts for this template -->
-<script src="js/creative.min.js"></script>
+<section id="contact">
+  <h2 class="section-title">Let's Connect</h2>
+  <p>Email: <a href="mailto:youremail@example.com">youremail@example.com</a></p>
+  <div>
+    <a href="#" target="_blank">LinkedIn</a>
+    <a href="#" target="_blank">GitHub</a>
+    <a href="#" target="_blank">Twitter</a>
+  </div>
+</section>
 
 </body>
-
 </html>
