@@ -110,42 +110,80 @@
     transform:translateX(-50%);
   }
 
-  /* --- Experience Section Styling --- */
+  /* --- Experience section --- */
+  /* --- Experience section --- */
   #experience {
     padding: 60px 20px;
+    color: #fff;
   }
 
   .experience-cards {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 25px;
   }
 
   .experience-card {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    padding: 25px;
+    border-radius: 14px;
+    padding: 30px;
     position: relative;
-    color: #fff;
-    backdrop-filter: blur(8px);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    overflow: visible;
+    transition: background 0.3s ease;
   }
 
   .experience-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0px 4px 12px rgba(0,0,0,0.3);
+    background: rgba(255, 255, 255, 0.08);
   }
 
+  /* --- Company Logo --- */
   .experience-card .logo {
     position: absolute;
-    top: 20px;
-    right: 20px;
-    height: 40px;
-    opacity: 0.25;
+    top: 25px;
+    right: 25px;
+    height: 70px; /* standardized larger size */
+    width: auto;
+    opacity: 0.9;
+    object-fit: contain;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.4));
+    transition: transform 0.3s ease;
   }
 
-  /* Responsive image grid */
+  .experience-card:hover .logo {
+    transform: scale(1.05);
+  }
+
+  .experience-card h3 {
+    margin-bottom: 5px;
+  }
+
+  .experience-card p {
+    margin-bottom: 10px;
+  }
+
+  /* --- Expandable details --- */
+  .experience-details {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.5s ease, opacity 0.3s ease;
+    padding-left: 15px;
+  }
+
+  .experience-card.expanded .experience-details {
+    max-height: 400px;
+    opacity: 1;
+    margin-top: 10px;
+  }
+
+  .experience-details ul {
+    padding-left: 20px;
+    list-style: disc;
+  }
+
+  /* --- Tech logos --- */
   .experience-images {
     display: flex;
     justify-content: center;
@@ -154,54 +192,60 @@
     margin-top: 20px;
   }
 
-  .experience-images img {
-    flex: 0 1 70px;
+  .tech-icon {
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 0 1 65px;
+    height: 55px;
+    justify-content: center;
+  }
+
+  .tech-icon img {
     height: 55px;
     object-fit: contain;
-    aspect-ratio: 1/1;
-    opacity: 0.85;
     border-radius: 6px;
-    background: rgba(255,255,255,0.03); /* Subtle blend */
+    background: rgba(255, 255, 255, 0.03);
     padding: 5px;
-    transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
-    position: relative;
-    box-shadow: 0 0 0 rgba(255,255,255,0); /* Prevent border artifact */
+    opacity: 0.95;
   }
 
-  .experience-images img:hover {
-    transform: scale(1.05);
-    opacity: 1;
-    box-shadow: 0 0 10px rgba(255,255,255,0.1);
-  }
-
-  /* Tooltip - Glassmorphism style */
-  .experience-images img::after {
-    content: attr(data-tooltip);
+  /* --- Tooltip --- */
+  .tooltip {
+    visibility: hidden;
+    opacity: 0;
     position: absolute;
-    bottom: 110%;
-    left: 50%;
-    transform: translateX(-50%) translateY(5px);
-    background: rgba(40, 40, 50, 0.6); /* Blended dark translucent */
-    backdrop-filter: blur(6px);
-    color: #f1f1f1;
-    font-size: 12px;
-    padding: 4px 8px;
+    bottom: 105%;
+    background: rgba(30, 30, 35, 0.95);
+    color: #fff;
+    font-size: 13px;
+    padding: 6px 10px;
     border-radius: 6px;
     white-space: nowrap;
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.25s ease;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: opacity 0.2s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 999;
   }
 
-  .experience-images img:hover::after {
+  .tech-icon:hover .tooltip {
+    visibility: visible;
     opacity: 1;
-    transform: translateX(-50%) translateY(0);
   }
 
-  @media(max-width: 768px) {
-    .experience-images img {
+  @media (max-width: 768px) {
+    .experience-card .logo {
+      height: 60px;
+      top: 15px;
+      right: 15px;
+    }
+
+    .tech-icon {
       flex: 0 1 50px;
+      height: 45px;
+    }
+
+    .tech-icon img {
       height: 45px;
     }
   }
@@ -218,34 +262,107 @@
   </div>
 </section>
 
-<section id="experience" class="section container">
+<section id="experience" class="container">
   <h2 class="section-title">Experience</h2>
-  <div class="cards">
+  <div class="experience-cards">
+
+    <!-- FanDuel -->
     <div class="experience-card">
-      <img src="https://via.placeholder.com/60?text=C1" class="experience-logo" alt="Company 1">
-      <h3>Data Engineer</h3>
-      <p>Fanduel | Nov 2024 - Present</p>
-      <!-- <p>Built robust ETL pipelines, optimized data storage, and improved query performance across large datasets.</p> -->
-       <div class="experience-images">
-         <img src="https://www.vectorlogo.zone/logos/apache_spark/apache_spark-icon.svg" alt="Apache Spark">
-        <img src="https://www.vectorlogo.zone/logos/amazon_aws/amazon_aws-icon.svg" alt="AWS"style="filter: invert(1);">
-        <img src="https://www.vectorlogo.zone/logos/apache_kafka/apache_kafka-icon.svg" alt="Kafka" style="filter: invert(1);">
-        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/apacheairflow.svg" alt="Airflow">
+      <img src="img/portfolio/work/fanduel-logo.png" class="logo" alt="FanDuel Logo">
+      <h3>Software Engineer | FanDuel</h3>
+      <p><em>Jan 2020 - Present</em></p>
+      <p>Building scalable data and analytics systems for real-time applications.</p>
+
+      <div class="experience-images">
+        <div class="tech-icon">
+          <img src="https://www.vectorlogo.zone/logos/apache_spark/apache_spark-icon.svg" alt="Apache Spark">
+          <span class="tooltip">Apache Spark</span>
+        </div>
+        <div class="tech-icon">
+          <img src="https://www.vectorlogo.zone/logos/amazon_aws/amazon_aws-icon.svg" alt="AWS">
+          <span class="tooltip">AWS</span>
+        </div>
+        <div class="tech-icon">
+          <img src="https://www.vectorlogo.zone/logos/apache_kafka/apache_kafka-icon.svg" alt="Apache Kafka">
+          <span class="tooltip">Apache Kafka</span>
+        </div>
+        <div class="tech-icon">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/apacheairflow.svg" alt="Apache Airflow" style="filter: invert(1);">
+          <span class="tooltip">Apache Airflow</span>
+        </div>
+      </div>
+
+      <div class="experience-details">
+        <ul>
+          <li>Developed automated data pipelines using Spark and Airflow.</li>
+          <li>Reduced ETL job runtime by 40% through optimization and caching.</li>
+          <li>Collaborated with data scientists to deploy predictive models to production.</li>
+          <li>Improved monitoring and alerting for data infrastructure reliability.</li>
+        </ul>
       </div>
     </div>
+
+    <!-- Walmart -->
     <div class="experience-card">
-      <img src="https://via.placeholder.com/60?text=C2" class="experience-logo" alt="Company 2">
-      <h3>Data Engineer</h3>
-      <p>Company 2 | Jun 2018 - Dec 2019</p>
+      <img src="https://www.vectorlogo.zone/logos/walmart/walmart-ar21.svg" class="logo" alt="Walmart Logo">
+      <h3>Data Engineer | Walmart Global Tech</h3>
+      <p><em>Jun 2018 - Dec 2019</em></p>
+      <p>Designed scalable, cloud-based data solutions for global retail operations.</p>
+
       <div class="experience-images">
-        <img src="https://www.vectorlogo.zone/logos/apache_spark/apache_spark-icon.svg" data-tooltip="Apache Spark" alt="Apache Spark" style="filter: invert(1);">
-        <img src="https://www.vectorlogo.zone/logos/amazon_aws/amazon_aws-ar21.svg" data-tooltip="AWS" alt="AWS" style="filter: invert(1);">
-        <img src="c:\Users\Jimmy\Documents\Github\Naman26.github.io\img\phylo.png" data-tooltip="Apache Kafka" alt="Kafka" style="filter: invert(1);">
-        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/apacheairflow.svg" data-tooltip="Apache Airflow" alt="Airflow" style="filter: invert(1);">
+        <div class="tech-icon">
+          <img src="https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg" alt="Google Cloud">
+          <span class="tooltip">Google Cloud</span>
+        </div>
+        <div class="tech-icon">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/apacheairflow.svg" alt="Apache Airflow" style="filter: invert(1);">
+          <span class="tooltip">Apache Airflow</span>
+        </div>
+        <div class="tech-icon">
+          <img src="https://www.vectorlogo.zone/logos/mysql/mysql-icon.svg" alt="MySQL">
+          <span class="tooltip">MySQL</span>
+        </div>
+        <div class="tech-icon">
+          <img src="https://www.vectorlogo.zone/logos/tableau/tableau-icon.svg" alt="Tableau">
+          <span class="tooltip">Tableau</span>
+        </div>
+      </div>
+
+      <div class="experience-details">
+        <ul>
+          <li>Engineered real-time data streaming architecture using Pub/Sub and Airflow.</li>
+          <li>Optimized data lake performance on GCP, cutting costs by 30%.</li>
+          <li>Implemented CI/CD pipelines for ETL jobs and data validation frameworks.</li>
+          <li>Partnered with analytics teams to deliver business intelligence dashboards.</li>
+        </ul>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  // Expand/collapse experience cards
+  const cards = document.querySelectorAll('.experience-card');
+  cards.forEach(card => {
+    card.addEventListener('click', (e) => {
+      // Prevent clicks on tech icons from toggling accordion
+      if (e.target.tagName === 'IMG' && e.target.closest('.tech-icon')) return;
+
+      cards.forEach(c => {
+        if (c !== card) c.classList.remove('expanded');
+      });
+
+      card.classList.toggle('expanded');
+
+      // Smooth scroll for mobile
+      if (window.innerWidth < 768 && card.classList.contains('expanded')) {
+        setTimeout(() => {
+          card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 300);
+      }
+    });
+  });
+</script>
 
 <section id="projects" class="section container">
   <h2 class="section-title">Projects</h2>
