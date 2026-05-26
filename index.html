@@ -71,7 +71,7 @@
   padding: 0.5em 1.2em;
   border-radius: 6px;
   text-align: center;
-  display: inline-block;
+  display: flex;
 }
 
 .btn:hover {
@@ -345,6 +345,7 @@
 
 #skills {
     background: #111827;
+    padding: 3rem 2rem;
     text-align: center;
   }
 
@@ -387,21 +388,51 @@
   .skills {
     margin-top: 1rem;
   }
+    
+    /* Category Container */
+  .skills-category {
+    /* max-width: 800px; */
+    margin: 0 auto 2.5rem auto;
+    text-align: left; /* Left-aligned sections look cleaner on wide screens */
+  }
 
+  .skills-category:last-child {
+    margin-bottom: 0;
+  }
+  .skills-category h3 {
+    color: #9ca3af; /* Muted gray for subtle separation */
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #1f2937;
+    padding-bottom: 0.5rem;
+  }
+
+  /* Flexbox/Grid for Badges */
+  .skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
   .skill-badge {
     display: inline-block;
-    margin: 0.3rem;
+    /* margin: 0.3rem; */
     padding: 0.6rem 1.2rem;
-    background: var(--primary);
+    background: var(--secondary, #2563eb);
+    /* background: var(--primary); */
     color: #fff;
     border-radius: 50px;
-    font-size: 0.9rem;
-    letter-spacing: 0.5px;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
     transition: 0.3s;
   }
 
   .skill-badge:hover {
-    background: var(--secondary);
+    /* background: var(--secondary); */
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+    cursor: default;
   }
 
   @media (max-width: 768px) {
@@ -460,15 +491,15 @@
       <img src="img/portfolio/work/fanduel-logo.png" class="logo" alt="FanDuel Logo">
       <h3>Data Engineer | FanDuel</h3>
       <p><em>Nov 2024 - Present</em></p>
-      <p>Building scalable data and analytics systems for real-time applications.<span class="hint">(expand for details)</span></p>
-      <div class="experience-details">
+      <p>Data Engineer specializing in single-source-of-truth migrations, architecting scalable batch and streaming infrastructure on AWS and Databricks, and modernizing legacy pipelines into highly optimized, enterprise frameworks.</p><!--<span class="hint">(expand for details)</span></p> -->
+      <!-- <div class="experience-details">
         <ul>
           <li>Developed automated data pipelines using Spark and Airflow.</li>
           <li>Reduced ETL job runtime by 40% through optimization and caching.</li>
           <li>Collaborated with data scientists to deploy predictive models to production.</li>
           <li>Improved monitoring and alerting for data infrastructure reliability.</li>
         </ul>
-      </div>
+      </div> -->
       <div class="experience-images">
         <div class="tech-icon">
           <img src="https://www.vectorlogo.zone/logos/apache_spark/apache_spark-icon.svg" alt="Apache Spark">
@@ -506,14 +537,14 @@
       <img src="img\portfolio\work\M3.avif" class="logo" alt="FanDuel Logo">
       <h3>Data Engineer II | M3</h3>
       <p>Aug 2024 - Nov 2024</p>
-      <p>Developed scalable data pipeline architectures and CI/CD frameworks, driving modernization and best practices across the Azure ecosystem.<span class="hint">(expand for details)</span></p>
+      <p>Data Engineer developing scalable data pipeline architectures and CI/CD frameworks, driving modernization and best practices across the Azure ecosystem.<span class="hint">(expand for details)</span></p>
       <div class="experience-details">
         <ul>
-            <li>Delivered a proof of concept for automated data pipelines using Azure DevOps, Airflow, and virtual machines.</li>
-            <li>Architected a centralized data lake and authored detailed technical and business requirements.</li>
-            <li>Implemented configuration-driven development, secure key vaults, and CI/CD deployment pipelines.</li>
+            <li>Formulated and demonstrated a production-ready proof of concept (POC) for cloud data pipelines, establishing the core infrastructure across Azure DevOps, Apache Airflow, and virtual machines.</li>
+            <li>Conceptualized a comprehensive data lake architecture, authoring the foundational technical requirements and system documentation for enterprise implementation.</li>
+            <li>Standardized development workflows by introducing configuration-driven pipelines, secure key vaults, strict Git branching methodologies, and automated CI/CD deployment processes to elevate organizational data maturity.</li>
             <li>Established code coverage, branching, and data maturity standards to ensure engineering consistency.</li>
-            <li>Planned migration strategy for legacy SSIS workloads to modern orchestration frameworks.</li>
+            <li>Formulated the strategic migration roadmap for transitioning legacy SQL Server Integration Services (SSIS) packages to modern cloud alternatives.</li>
         </ul>
       </div>
       <div class="experience-images">
@@ -541,17 +572,17 @@
       <img src="https://www.vectorlogo.zone/logos/walmart/walmart-ar21.svg" class="logo" alt="Walmart Logo">
       <h3>Data Engineer III | Walmart</h3>
       <p>Aug 2022 - Aug 2024</p>
-      <p>Led data engineering initiatives across multi-cloud environments — optimizing pipelines, enforcing code quality, and scaling analytics infrastructure.<span class="hint">(expand for details)</span></p>
+      <p>Cloud Data Engineer specializing in architecting multi-cloud streaming data lakes, automating CI/CD workflows, and leading Agile teams to deliver high-performance, cost-optimized data infrastructure.<span class="hint">(expand for details)</span></p>
       <div class="experience-details">
         <ul>
-            <li>Guided a 5-member engineering team through Agile sprints, improving velocity by 15%.</li>
-            <li>Architected a medallion-based data lake across Azure and GCP using Airflow, Spark, and BigQuery.</li>
-            <li>Automated CI/CD workflows and integrated ServiceNow to eliminate manual deployment steps.</li>
-            <li>Migrated legacy Automic pipelines to Airflow with full test coverage and zero downtime.</li>
-            <li>Optimized cloud compute costs, saving over $100K annually through cluster tuning.</li>
-            <li>Enhanced reliability by automating credential rotation and securing pipeline access via Secret Manager.</li>
-            <li>Boosted performance of REST API dataflows by reducing 90% of compute time.</li>
-            <li>Mentored and onboarded new developers through code reviews and pair programming.</li>
+            <li>Guided a team of 5 engineers to boost sprint velocity by 15%, leveraging strict Agile/Scrum methodologies to eliminate dependencies and guarantee consistent, on-time project delivery<span class="hint">(Jira, Miro)</span>.</li>
+            <li>Architected a multi-cloud streaming data lake utilizing medallion principles and SCD tables, scaling infrastructure across both GCP and Azure ecosystems<span class="hint">(Airflow, Dataproc, Dataflow, PySpark, BigQuery, GCS, Databricks)</span>.</li>
+            <li>Enforced enterprise coding and testing standards across major repositories, raising code coverage to 95% via SonarQube while contributing reusable modules to an internal Artifactory with 70+ divisional downloads<span class="hint">(JFrog)</span>.</li>
+            <li>Scripted automated CI/CD flows to dynamically drain and provision new Dataflow jobs, eliminating 1/2 sprints of manual effort typically required per configuration and pom.xml update<span class="hint">(Jenkins, Docker, Maven)</span>.</li>
+            <li>Slashed cloud infrastructure spend by over $100K annually through aggressive cluster and worker node fine-tuning, while engineering an 80% compute-time reduction for a high-volume REST API DAG.</li>
+            <li>Managed the end-to-end migration of legacy Automic pipelines to Airflow with 100% code coverage, securing all data credentials via Google Secret Manager to guarantee zero data loss during the transition.</li>
+            <li>Automated change tickets by integrating ServiceNow requests directly into the existing CI/CD pipeline, eliminating manual overhead to save 2+ engineering hours per deployment.</li>
+            <li>Cultivated a resilient on-call support model that resolved pipeline failures and delivered client data within the first hour of an outage, while actively onboarding and pair-programming with 3 new developers to accelerate productivity.</li>
         </ul>
       </div>
       <div class="experience-images">
@@ -583,16 +614,16 @@
       <img src="img\portfolio\work\ln_2.png" class="logo" alt="LexisNexis Logo">
       <h3>Software Engineer II | LexisNexis</h3>
       <p>Feb 2021 - Aug 2022</p>
-      <p>Engineered high-performance data search and matching systems, optimizing large-scale analytics and automation workflows.<span class="hint">(expand for details)</span></p>
+      <p>Data Engineer specializing in architecting high-performance search engines, optimizing database retrieval speeds, and automating testing frameworks to process over 30M+ records under strict enterprise SLAs.<span class="hint">(expand for details)</span></p>
       <div class="experience-details">
         <ul>
-            <li>Improved a client-facing search platform delivering query results on massive datasets within 2 seconds.</li>
-            <li>Implemented phonetic and fuzzy matching in ETL pipelines, reducing lookup time by 5 ms.</li>
-            <li>Optimized database design and usage for cloud migration, cutting storage costs significantly.</li>
-            <li>Developed and evaluated crosswalk interfaces to improve matching precision and recall.</li>
-            <li>Streamlined version control and releases across multiple environments using GitLab CI/CD and SQL Server.</li>
-            <li>Automated regression testing with CRON-based jobs, saving over 120 engineering hours annually.</li>
-            <li>Delivered B2C and C2B analytics reports on 30 million+ record datasets, consistently meeting client SLAs.</li>
+            <li>Designed a high-performance search interface and underlying matching engine, enabling clients to query and retrieve database-wide matches within a sub-2-second response window.</li>
+            <li>Optimized data retrieval speeds by 5ms through the implementation of phonetic and fuzzy matching logic within core ETL pipelines.</li>
+            <li>Audit database utilization and storage footprints to minimize overhead costs, effectively optimizing the data tier ahead of a major cloud migration.</li>
+            <li>Evaluated and deployed crosswalk interfaces, using strict precision and recall data metrics to maximize record-linking accuracy.</li>
+            <li>Maintained multi-environment release stability, coordinating complex code merges and database promptly Git and GitLab CI/CD pipelines<span class="hint">(SQL Server)</span>.</li>
+            <li> Developed an automated regression testing framework triggered by custom CRON jobs, eliminating technical debt and saving 120 manual engineering hours.</li>
+            <li>Aggregated over 30M+ records to generate high-volume B2C and C2B data reports, consistently meeting strict SLA timelines for enterprise clients.</li>
         </ul>
       </div>
       <div class="experience-images">
@@ -726,8 +757,49 @@ newly added code.</li>
         <span>AWS Cloud Solutions Specialization (Coursera)</span>
     </a>
     </div>
+<section id="skills">
+  <div class="skills-category">
+    <h3>Languages</h3>
+    <div class="skills-grid">
+      <span class="skill-badge">Python</span>
+      <span class="skill-badge">Java</span>
+      <span class="skill-badge">SQL</span>
+    </div>
+  </div>
 
-   <div class="skills">
+  <div class="skills-category">
+    <h3>Data Engineering & Cloud</h3>
+    <div class="skills-grid">
+      <span class="skill-badge">PySpark</span>
+      <span class="skill-badge">Airflow</span>
+      <span class="skill-badge">Databricks</span>
+      <span class="skill-badge">AWS</span>
+      <span class="skill-badge">GCP</span>
+      <span class="skill-badge">Azure</span>
+      <span class="skill-badge">ETL</span>
+      <span class="skill-badge">Data Modeling</span>
+    </div>
+  </div>
+
+  <div class="skills-category">
+    <h3>DevOps & Infrastructure</h3>
+    <div class="skills-grid">
+      <span class="skill-badge">Docker</span>
+      <span class="skill-badge">Jenkins</span>
+      <span class="skill-badge">Git</span>
+      <span class="skill-badge">Linux</span>
+      <span class="skill-badge">CI/CD</span>
+    </div>
+  </div>
+
+  <div class="skills-category">
+    <h3>Methodologies</h3>
+    <div class="skills-grid">
+      <span class="skill-badge">Agile</span>
+    </div>
+  </div>
+</section>
+   <!-- <div class="skills">
     <span class="skill-badge">Python</span>
     <span class="skill-badge">Java</span>
     <span class="skill-badge">SQL</span>
@@ -745,7 +817,7 @@ newly added code.</li>
     <span class="skill-badge">Data Modeling</span>
     <span class="skill-badge">CI/CD</span>
     <span class="skill-badge">Agile</span>
-  </div>
+  </div> -->
 </section>
 
 <section id="contact">
